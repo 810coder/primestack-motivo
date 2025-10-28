@@ -1,5 +1,0 @@
-site key
-6LfHmH0rAAAAAG_R9er9UjEpo8xHpdfMf41Ca38u  
-
- secret key
-6LfHmH0rAAAAAJrXaBmHiNq5yKWjSGZu_KUZirZV
