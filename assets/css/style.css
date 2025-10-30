@@ -30,6 +30,22 @@
   box-sizing: border-box;
 }
 
+/* custom colors and styles  */
+.lb-bg {
+  /* light blue background-color; */
+  background-color: rgba(220, 233, 255, 1);
+}
+.wbg {
+  background-color: #fff;
+}
+.p-10 {
+  padding: 5rem !important;
+}
+.b-bd {
+  border: 10px solid rgba(220, 233, 255, 1);
+}
+/* custom colors and styles end */
+
 body,
 html {
   overflow-x: hidden;
@@ -107,6 +123,14 @@ p {
   font-family: 'Ubuntu', sans-serif !important;
   color: #259bbe;
   margin-bottom: 15px;
+}
+.spec-h5 {
+  font-weight: 700;
+  text-transform: capitalize;
+  font-size: 2vw;
+  font-family: 'Ubuntu', sans-serif !important;
+  color: #259bbe;
+  margin-bottom: 15x;
 }
 
 .view-project-btn {
