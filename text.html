@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Concave Overlay Card</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: #eee;
+        }
+
+        .card {
+            position: relative;
+            width: 300px;
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        .card img {
+            width: 100%;
+            border-radius: 16px;
+            display: block;
+        }
+
+        .caption {
+            position: absolute;
+            inset: 0;
+            width: 70%;
+            left: auto;
+            right: 0;
+            background: #1e8697;
+            color: #fff;
+            display: flex;
+            align-items: flex-end;
+            padding: 15px;
+
+            /* 👇 THE MAGIC — concave inward cut */
+            -webkit-mask:
+                radial-gradient(40px at 0 50%, transparent 98%, black) left center,
+                linear-gradient(black 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+        }
+
+        .caption h3 {
+            margin: 0;
+            line-height: 1.1;
+            font-size: 18px;
+        }
+
+        .caption span {
+            display: block;
+            font-size: 13px;
+            opacity: .9;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="card">
+        <img src="/assets/images/p1.jpg" alt="">
+        <div class="caption">
+            <h3>Levita <span>Hotel</span></h3>
+        </div>
+    </div>
+
+</body>
+
+</html>

@@ -127,7 +127,7 @@ p {
 .spec-h5 {
   font-weight: 700;
   text-transform: capitalize;
-  font-size: 2vw;
+  font-size: 40px;
   font-family: 'Ubuntu', sans-serif !important;
   color: #259bbe;
   margin-bottom: 15x;
@@ -753,6 +753,9 @@ textarea {
     font-size: 30px;
     text-align: center !important;
   }
+  .spec-h5 {
+    font-size: 30px;
+  }
 
   .accomplishment {
     width: 101px;
@@ -783,6 +786,138 @@ textarea {
   .services-list {
     margin: 5px auto;
     max-width: 100%;
+  }
+}
+/* smaple project start  */
+
+.project-card {
+  position: relative;
+  border-radius: 30px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Image wrapper .project-card .image-section {
+  position: relative;
+  height: 300px;
+} */
+
+/* Image
+.project-card .main-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+} */
+
+/* -------------------------------------- */
+/* MOBILE (default) - box always visible  */
+/* -------------------------------------- */
+.project-card .info-box {
+  background: #157a8a;
+  color: white;
+  padding: 18px 20px;
+  width: 100%;
+  border-radius: 0;
+  position: absolute;
+  bottom: 0; /* always at bottom */
+  left: 0;
+  text-align: left;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.25);
+  transition: all 0.45s ease; /* smooth slide + fade */
+  opacity: 1; /* mobile = visible */
+}
+
+/* Text styles */
+.project-card .info-box h3 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.project-card .info-box p {
+  margin: 4px 0 0;
+  font-size: 13px;
+  opacity: 0.9;
+  color: #fff;
+}
+
+/* -------------------------------------- */
+/* DESKTOP: hide first, show on hover     */
+/* -------------------------------------- */
+@media (min-width: 768px) {
+  .project-card .info-box {
+    width: 80%;
+    border-radius: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    bottom: -120px; /* hidden below card */
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .project-card:hover .info-box {
+    bottom: 0; /* slides up smoothly */
+    opacity: 1; /* fade in */
+    pointer-events: auto;
+  }
+}
+/* sample projects end */
+
+/* WBGR Card */
+.wbgr {
+  background-color: #fff;
+  border-radius: 50px;
+  padding: 100px 50px;
+  text-align: center;
+}
+
+/* Slider for desktop only */
+@media (min-width: 992px) {
+  /* Slider viewport */
+  .slider-viewport {
+    height: 700px; /* Height of 2 rows */
+    overflow: hidden;
+    position: relative;
+  }
+
+  /* Slider track */
+  .slider-track {
+    display: flex;
+    flex-direction: column;
+    animation: slide-vertical 70s linear infinite;
+  }
+
+  /* Each row inside the slider */
+  .slider-row {
+    display: flex;
+    margin-bottom: 30px; /* spacing between rows */
+  }
+
+  /* Smooth infinite vertical scroll */
+  @keyframes slide-vertical {
+    0% {
+      transform: translateY(0);
+    }
+    100% {
+      transform: translateY(
+        -50%
+      ); /* scroll through half track (duplicated rows) */
+    }
+  }
+}
+
+/* Mobile / tablet - no sliding */
+@media (max-width: 991px) {
+  .slider-viewport {
+    height: auto; /* auto height to show all cards */
+    overflow: visible; /* no scroll effect */
+  }
+  .slider-track {
+    animation: none;
+    flex-direction: column;
   }
 }
 
