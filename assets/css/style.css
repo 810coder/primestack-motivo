@@ -35,15 +35,19 @@
   /* light blue background-color; */
   background-color: rgba(220, 233, 255, 1);
 }
+
 .wbg {
   background-color: #fff;
 }
+
 .p-10 {
   padding: 5rem !important;
 }
+
 .b-bd {
   border: 10px solid rgba(220, 233, 255, 1);
 }
+
 /* custom colors and styles end */
 
 body,
@@ -71,10 +75,12 @@ p {
   padding-left: 5%;
   padding-right: 5%;
 }
+
 .banner {
   background-color: #fff;
   padding: 50px 0;
 }
+
 .spec-row {
   margin-bottom: 70px;
   align-items: center;
@@ -85,6 +91,7 @@ p {
     padding: 20px;
   }
 }
+
 .servi-img {
   border-radius: 20px;
   height: 510%;
@@ -124,6 +131,7 @@ p {
   color: #259bbe;
   margin-bottom: 15px;
 }
+
 .spec-h5 {
   font-weight: 700;
   text-transform: capitalize;
@@ -292,29 +300,54 @@ p {
   font-weight: 500;
 }
 
+/* Container for icons */
+.social-icons-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+  /* allows icons to wrap on small screens */
+}
+
+/* Main circle styling */
 .social-icon {
-  display: inline-block;
+  width: 70px;
+  height: 70px;
   background-color: #dce9ff;
   border-radius: 50%;
-  margin-right: 0.5rem;
-  transition: background-color 0.3s ease 0.1s;
-  margin: 15px;
-  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.3s ease;
+  text-decoration: none;
 }
 
+/* Icon inside the circle */
 .social-icon i {
   color: #259bbe;
-  font-size: 3rem;
-  transition: color 0.3s ease 0.1s;
-  margin: 30px;
+  font-size: 30px;
+  transition: color 0.3s ease;
 }
 
+/* Hover effect */
 .social-icon:hover {
   background-color: #259bbe;
 }
 
 .social-icon:hover i {
-  color: #dce9ff;
+  color: #ffffff;
+}
+
+/* 🔹 Responsive sizes for mobile */
+@media (max-width: 575px) {
+  .social-icon {
+    width: 55px;
+    height: 55px;
+  }
+
+  .social-icon i {
+    font-size: 24px;
+  }
 }
 
 /* contact us */
@@ -389,7 +422,8 @@ textarea {
 .map-container {
   position: relative;
   width: 100%;
-  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  padding-bottom: 56.25%;
+  /* 16:9 aspect ratio */
   height: 0;
   overflow: hidden;
   background-color: #fff;
@@ -403,6 +437,7 @@ textarea {
   height: 100%;
   padding: 20px 0;
 }
+
 /* contact us end */
 
 /* .carousel  */
@@ -412,6 +447,7 @@ textarea {
   width: 300px !important;
   text-transform: capitalize !important;
 }
+
 /* Responsive for small screens (iPhone XR and similar) */
 @media (max-width: 414px) {
   .c-text {
@@ -586,6 +622,7 @@ textarea {
 }
 
 @media (prefers-reduced-motion: reduce) {
+
   .owl-carousel.home-slider .owl-nav .owl-prev,
   .owl-carousel.home-slider .owl-nav .owl-next {
     -webkit-transition: none;
@@ -604,6 +641,7 @@ textarea {
 }
 
 @media (prefers-reduced-motion: reduce) {
+
   .owl-carousel.home-slider .owl-nav .owl-prev span:before,
   .owl-carousel.home-slider .owl-nav .owl-next span:before {
     -webkit-transition: none;
@@ -753,6 +791,7 @@ textarea {
     font-size: 30px;
     text-align: center !important;
   }
+
   .spec-h5 {
     font-size: 30px;
   }
@@ -765,6 +804,7 @@ textarea {
   .acco-child p {
     font-size: 16px !important;
   }
+
   .acco-child h1 {
     font-size: 30px;
   }
@@ -788,11 +828,11 @@ textarea {
     max-width: 100%;
   }
 }
+
 /* smaple project start  */
 
 .project-card {
   position: relative;
-  border-radius: 30px;
   overflow: hidden;
   background: #fff;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
@@ -803,13 +843,7 @@ textarea {
   height: 300px;
 } */
 
-/* Image
-.project-card .main-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-} */
+
 
 /* -------------------------------------- */
 /* MOBILE (default) - box always visible  */
@@ -821,12 +855,15 @@ textarea {
   width: 100%;
   border-radius: 0;
   position: absolute;
-  bottom: 0; /* always at bottom */
+  bottom: 0;
+  /* always at bottom */
   left: 0;
   text-align: left;
   box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.25);
-  transition: all 0.45s ease; /* smooth slide + fade */
-  opacity: 1; /* mobile = visible */
+  transition: all 0.45s ease;
+  /* smooth slide + fade */
+  opacity: 1;
+  /* mobile = visible */
 }
 
 /* Text styles */
@@ -848,22 +885,26 @@ textarea {
 /* -------------------------------------- */
 @media (min-width: 768px) {
   .project-card .info-box {
-    width: 80%;
+    width: 100%;
     border-radius: 15px;
     left: 50%;
     transform: translateX(-50%);
 
-    bottom: -120px; /* hidden below card */
+    bottom: -120px;
+    /* hidden below card */
     opacity: 0;
     pointer-events: none;
   }
 
   .project-card:hover .info-box {
-    bottom: 0; /* slides up smoothly */
-    opacity: 1; /* fade in */
+    bottom: 0;
+    /* slides up smoothly */
+    opacity: 1;
+    /* fade in */
     pointer-events: auto;
   }
 }
+
 /* sample projects end */
 
 /* WBGR Card */
@@ -876,9 +917,11 @@ textarea {
 
 /* Slider for desktop only */
 @media (min-width: 992px) {
+
   /* Slider viewport */
   .slider-viewport {
-    height: 700px; /* Height of 2 rows */
+    height: 700px;
+    /* Height of 2 rows */
     overflow: hidden;
     position: relative;
   }
@@ -893,7 +936,8 @@ textarea {
   /* Each row inside the slider */
   .slider-row {
     display: flex;
-    margin-bottom: 30px; /* spacing between rows */
+    margin-bottom: 30px;
+    /* spacing between rows */
   }
 
   /* Smooth infinite vertical scroll */
@@ -901,10 +945,10 @@ textarea {
     0% {
       transform: translateY(0);
     }
+
     100% {
-      transform: translateY(
-        -50%
-      ); /* scroll through half track (duplicated rows) */
+      transform: translateY(-50%);
+      /* scroll through half track (duplicated rows) */
     }
   }
 }
@@ -912,9 +956,12 @@ textarea {
 /* Mobile / tablet - no sliding */
 @media (max-width: 991px) {
   .slider-viewport {
-    height: auto; /* auto height to show all cards */
-    overflow: visible; /* no scroll effect */
+    height: auto;
+    /* auto height to show all cards */
+    overflow: visible;
+    /* no scroll effect */
   }
+
   .slider-track {
     animation: none;
     flex-direction: column;
@@ -957,11 +1004,13 @@ textarea {
   max-width: 450px;
   margin-left: 5%;
 }
+
 .services-list {
   margin: 50px auto;
   text-align: center;
   width: 50%;
 }
+
 .service-text {
   text-align: left;
 }
@@ -969,6 +1018,7 @@ textarea {
 .servi {
   border-bottom: 3px solid rgba(0, 0, 0, 0.2);
 }
+
 /* Default: image visible */
 .service-img img {
   display: block;
@@ -978,11 +1028,13 @@ textarea {
 /* Desktop only (≥992px): hide image until hover */
 @media (min-width: 992px) {
   .service-img img {
-    opacity: 0; /* invisible but space still there */
+    opacity: 0;
+    /* invisible but space still there */
   }
 
   .services-list:hover .service-img img {
-    opacity: 1; /* fade in on hover */
+    opacity: 1;
+    /* fade in on hover */
   }
 }
 
@@ -997,25 +1049,30 @@ textarea {
     padding-left: 1rem;
     padding-right: 1rem;
   }
+
   .services-list {
     width: 90%;
     margin: 20px auto;
     font-size: 20px;
     text-align: left;
   }
+
   .services-list h3 {
     font-size: 23px;
     display: inline;
     width: 10%;
   }
+
   .service-img {
     display: flex;
     height: auto;
     margin-bottom: 5px;
   }
+
   .service-img-1 {
     text-align: center;
   }
+
   .service-text {
     margin: auto;
     padding: 0;
@@ -1053,8 +1110,8 @@ textarea {
   top: 0;
 }
 
-.main-navigation ul ul li:hover > ul,
-.main-navigation ul ul li.focus > ul {
+.main-navigation ul ul li:hover>ul,
+.main-navigation ul ul li.focus>ul {
   left: 100%;
 }
 
@@ -1062,8 +1119,8 @@ textarea {
   width: 200px;
 }
 
-.main-navigation ul li:hover > ul,
-.main-navigation ul li.focus > ul {
+.main-navigation ul li:hover>ul,
+.main-navigation ul li.focus>ul {
   left: auto;
 }
 

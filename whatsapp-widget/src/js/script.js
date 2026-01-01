@@ -1,53 +1,51 @@
 let paramsDefault = {
-    optionsPopup: {
-        background: '#095E54',
-        color: '#FFFFFF'
-    },
-    optionsIcon: {
-        background: '#24CD63',
-        color: '#FFFFFF'
-    },
-    optionsChat: {
-        buttonTarget: `https://api.whatsapp.com/send?`,
-        message: 'Hello everyone',
-        phone: '+2349060226267 ',
-        text: 'Send'
-    },
-    optionsBot: {
-        name: 'Primestack Motive',
-        image: '/assets/images/icons/logo.png',
-        messageDefault: 'Hi, 👋 how can I help you?',
-        messageTyping: 'is typing...'
-    }
+  optionsPopup: {
+    background: '#095E54',
+    color: '#FFFFFF',
+  },
+  optionsIcon: {
+    background: '#24CD63',
+    color: '#FFFFFF',
+  },
+  optionsChat: {
+    buttonTarget: `https://api.whatsapp.com/send?`,
+    message: 'Hello everyone',
+    phone: '+2349060226267 ',
+    text: 'Send',
+  },
+  optionsBot: {
+    name: 'Primestack Motive',
+    image: '/assets/images/icons/logo.png',
+    messageDefault: 'Hi, 👋 how can I help you?',
+    messageTyping: 'is typing...',
+  },
 };
 
 let timer;
 
 function initWidget(params) {
+  document.addEventListener('DOMContentLoaded', function (e) {
+    const wpp = document.createElement('div');
+    wpp.setAttribute('id', 'whatsapp-widget');
+    wpp.classList.add('whatsapp-widget');
 
-    document.addEventListener("DOMContentLoaded", function (e) {
-        const wpp = document.createElement('div');
-        wpp.setAttribute("id", "whatsapp-widget");
-        wpp.classList.add('whatsapp-widget');
+    const body = document.querySelector('body');
+    body.appendChild(wpp);
 
-        const body = document.querySelector('body');
-        body.appendChild(wpp);
-
-        createElements(params);
-    })
+    createElements(params);
+  });
 }
 
 function createElements(params) {
-    const mainWhatsappWidget = document.querySelector('#whatsapp-widget');
+  const mainWhatsappWidget = document.querySelector('#whatsapp-widget');
 
-    if (params)
-        paramsDefault = params;
+  if (params) paramsDefault = params;
 
-    const strTarget = ` <a href="#" id="whatsapp-widget-target" class="whatsapp-widget-target pulse">
+  const strTarget = ` <a href="#" id="whatsapp-widget-target" class="whatsapp-widget-target pulse">
                             <img id="whatsapp-widget-icon" class="whatsapp-widget-icon" src="https://imagepng.org/wp-content/uploads/2017/08/WhatsApp-icone.png"/>
                         </a>`;
 
-    const strChat = `<div class="whatsapp-widget-chat" id="whatsapp-widget-chat">
+  const strChat = `<div class="whatsapp-widget-chat" id="whatsapp-widget-chat">
                         <div class="whatsapp-widget-chat-header" id="whatsapp-widget-chat-header" style="background: ${paramsDefault.optionsPopup.background}; color: ${paramsDefault.optionsPopup.color}">
                             <div class="whatsapp-widget-chat-header close" id="close">✖</div>
                             <div class="whatsapp-widget-chat-header bot">
@@ -78,94 +76,118 @@ function createElements(params) {
                         </div>
                     </div>`;
 
-    mainWhatsappWidget.innerHTML = strTarget + strChat;
+  mainWhatsappWidget.innerHTML = strTarget + strChat;
 
-    setEvents();
+  setEvents();
 }
 
 function setEvents() {
-    const close = document.getElementById("close");
-    const modal = document.getElementById("whatsapp-widget-open-modal");
-    const widgetChat = document.getElementById("whatsapp-widget-chat");
-    const widgetTarget = document.getElementById("whatsapp-widget-target");
+  const close = document.getElementById('close');
+  const modal = document.getElementById('whatsapp-widget-open-modal');
+  const widgetChat = document.getElementById('whatsapp-widget-chat');
+  const widgetTarget = document.getElementById('whatsapp-widget-target');
 
-    const setEventClickClose = () => {
-        close.addEventListener("click", function () {
-            widgetChat.style.cssText = "visibility: hidden; opacity: 0";
-        });
-    }
+  const setEventClickClose = () => {
+    close.addEventListener('click', function () {
+      widgetChat.style.cssText = 'visibility: hidden; opacity: 0';
+    });
+  };
 
-    const setEventClickModal = () => {
-        modal.addEventListener("click", function (e) {
-            e.preventDefault();
-            modalWhatsapp();
-            widgetChat.style.cssText = "visibility: hidden; opacity: 0";
-        });
-    }
+  const setEventClickModal = () => {
+    modal.addEventListener('click', function (e) {
+      e.preventDefault();
+      modalWhatsapp();
+      widgetChat.style.cssText = 'visibility: hidden; opacity: 0';
+    });
+  };
 
-    const setEventClickWhatsappIcon = () => {
-        const simulateMessage = () => {
-            const messageBot = document.querySelector('#messageBot');
-            const userBot = document.querySelector('#userBot');
-            const msgBot = document.querySelector('#msgBot');
-            const dateBot = document.querySelector('#dateBot');
-            const statusBot = document.querySelector('#statusBot');
+  const setEventClickWhatsappIcon = () => {
+    const simulateMessage = () => {
+      const messageBot = document.querySelector('#messageBot');
+      const userBot = document.querySelector('#userBot');
+      const msgBot = document.querySelector('#msgBot');
+      const dateBot = document.querySelector('#dateBot');
+      const statusBot = document.querySelector('#statusBot');
 
-            messageBot.style.display = 'none';
-            userBot.innerHTML = ``;
-            msgBot.innerHTML = ``;
-            statusBot.innerHTML = paramsDefault.optionsBot.messageTyping;
-            dateBot.innerHTML = ``;
+      messageBot.style.display = 'none';
+      userBot.innerHTML = ``;
+      msgBot.innerHTML = ``;
+      statusBot.innerHTML = paramsDefault.optionsBot.messageTyping;
+      dateBot.innerHTML = ``;
 
-            clearTimeout(timer)
+      clearTimeout(timer);
 
-            timer = setTimeout(() => {
-                messageBot.style.display = 'block';
-                userBot.innerHTML = paramsDefault.optionsBot.name;
-                msgBot.innerHTML = paramsDefault.optionsBot.messageDefault;
-                statusBot.innerHTML = `Online`;
-                dateBot.innerHTML = timeNow();
-            }, 2000);
-        }
+      timer = setTimeout(() => {
+        messageBot.style.display = 'block';
+        userBot.innerHTML = paramsDefault.optionsBot.name;
+        msgBot.innerHTML = paramsDefault.optionsBot.messageDefault;
+        statusBot.innerHTML = `Online`;
+        dateBot.innerHTML = timeNow();
+      }, 2000);
+    };
 
-        widgetTarget.addEventListener("click", function (e) {
-            e.preventDefault();
+    widgetTarget.addEventListener('click', function (e) {
+      e.preventDefault();
 
-            if (window.getComputedStyle(widgetChat).getPropertyValue("opacity") == '0') {
-                widgetChat.style.cssText = "visibility: visible; opacity: 1";
-                simulateMessage();
-            } else {
-                widgetChat.style.cssText = "visibility: hidden; opacity: 0";
-            }
-        })
-    }
+      if (
+        window.getComputedStyle(widgetChat).getPropertyValue('opacity') == '0'
+      ) {
+        widgetChat.style.cssText = 'visibility: visible; opacity: 1';
+        simulateMessage();
+      } else {
+        widgetChat.style.cssText = 'visibility: hidden; opacity: 0';
+      }
+    });
+  };
 
-    setEventClickModal();
-    setEventClickWhatsappIcon();
-    setEventClickClose();
+  setEventClickModal();
+  setEventClickWhatsappIcon();
+  setEventClickClose();
 }
 
 function modalWhatsapp() {
-    const x = screen.width / 2 - 800 / 2;
-    const y = screen.height / 2 - 550 / 2;
-    const messageInput = document.getElementById("whatsapp-widget-chat-input");
+  const x = screen.width / 2 - 800 / 2;
+  const y = screen.height / 2 - 550 / 2;
+  const messageInput = document.getElementById('whatsapp-widget-chat-input');
 
-    let message = messageInput.value;
+  let message = messageInput.value;
 
-    if (message.length === 0) message = paramsDefault.optionsChat.message;
+  if (message.length === 0) message = paramsDefault.optionsChat.message;
 
-    window.open(
-        `${paramsDefault.optionsChat.buttonTarget}phone=${paramsDefault.optionsChat.phone}&text=${encodeURIComponent(message)}`,
-        ``,
-        `height=550,width=800,left=${x},top=${y}`
-    );
+  window.open(
+    `${paramsDefault.optionsChat.buttonTarget}phone=${
+      paramsDefault.optionsChat.phone
+    }&text=${encodeURIComponent(message)}`,
+    ``,
+    `height=550,width=800,left=${x},top=${y}`
+  );
 }
 
 function timeNow() {
-    const timeString = new Date().toTimeString();
+  const timeString = new Date().toTimeString();
 
-    return timeString.substring(0, 5);
+  return timeString.substring(0, 5);
 }
 
+initWidget();
 
-initWidget()
+// project toggle
+
+const listBtn = document.getElementById('listBtn');
+const gridBtn = document.getElementById('gridBtn');
+const listView = document.getElementById('listView');
+const gridView = document.getElementById('gridView');
+
+listBtn.onclick = () => {
+  listBtn.classList.add('active');
+  gridBtn.classList.remove('active');
+  listView.classList.add('show');
+  gridView.classList.remove('show');
+};
+
+gridBtn.onclick = () => {
+  gridBtn.classList.add('active');
+  listBtn.classList.remove('active');
+  gridView.classList.add('show');
+  listView.classList.remove('show');
+};
