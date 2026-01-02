@@ -191,3 +191,18 @@ gridBtn.onclick = () => {
   gridView.classList.add('show');
   listView.classList.remove('show');
 };
+
+// about slider
+
+$(document).ready(function () {
+  $('.horizontal-slideshow').slick({
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 3000,
+    arrows: true,
+    dots: false, // Turn off dots for a cleaner slideshow look
+    fade: true, // Use fade for a smoother transition
+    cssEase: 'linear',
+  });
+});

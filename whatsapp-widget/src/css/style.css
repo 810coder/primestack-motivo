@@ -202,7 +202,7 @@
     padding: 10px;
     display: flex;
     flex-direction: column;
-    color: #fff;
+    color: #fff !important;
     text-decoration: none;
     background: #259bbe;
     /* Updated to match theme */
@@ -470,7 +470,313 @@ tbody td:first-child {
     }
 
     .p-img {
-        opacity: 1;
+        opacity: 0;
         border-radius: 10px;
     }
+
+    tr:hover .p-img {
+        opacity: 1;
+        transition: opacity 0.3s ease-in-out 0.2s;
+    }
+}
+
+
+/* =========================
+   CUSTOM SLIDER LOGIC
+   ========================= */
+.custom-slider-container {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    overflow: hidden;
+    background-color: #e4f7f8;
+}
+
+.custom-slider-track {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    width: 400%;
+    /* 100% per slide (4 slides total) */
+}
+
+.custom-slide {
+    width: 100vw;
+    flex-shrink: 0;
+}
+
+.value-content {
+    padding: 100px 15%;
+    text-align: center;
+    min-height: 350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.value-content p {
+    color: #259bbe;
+    font-weight: 500;
+    width: 40%;
+    margin: auto;
+}
+
+/* NAVIGATION ARROWS */
+.slider-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    color: #157a8a;
+    font-size: 2rem;
+    padding: 20px;
+    cursor: pointer;
+    z-index: 10;
+    transition: background 0.3s;
+}
+
+.slider-arrow:hover {
+    background: rgba(21, 122, 138, 0.2);
+}
+
+.prev {
+    left: 20px;
+}
+
+.next {
+    right: 20px;
+}
+
+/* =========================
+   MOBILE PROJECT DATA FIX
+   ========================= */
+@media (max-width: 767px) {
+    .value-content {
+        padding: 60px 20px;
+        min-height: 250px;
+    }
+
+    /* Ensure image stays constant and name wraps */
+    .project-data {
+        display: flex !important;
+        align-items: center;
+        width: 100%;
+    }
+
+    .project-img {
+        width: 60px !important;
+        height: 60px !important;
+        flex-shrink: 0 !important;
+    }
+
+    .project-name {
+        flex-grow: 1;
+        white-space: normal !important;
+        word-wrap: break-word;
+        padding-left: 10px;
+    }
+
+    .prev {
+        left: -10px;
+    }
+
+    .next {
+        right: -10px;
+    }
+
+    .value-content p {
+        width: 100%;
+    }
+}
+
+/* team css  */
+
+:root {
+    --primary-blue: #157a8a;
+    --text-gray: #555;
+}
+
+.overlay-text {
+    text-transform: capitalize;
+}
+
+.team-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    /* 3 columns */
+    gap: 30px 20px;
+    /* Vertical and horizontal spacing */
+    max-width: 1500px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: sans-serif;
+    background-color: #fff;
+}
+
+.team-card {
+    display: flex;
+    flex-direction: column;
+}
+
+.image-wrapper img {
+    width: 100%;
+    object-fit: cover;
+    border-radius: 15px;
+    /* Rounded corners for the photos */
+    display: block;
+    border: 0.01px dotted #555;
+    border-radius: 50px;
+}
+
+.info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    /* Splits name and role */
+    align-items: start;
+    margin-top: 10px;
+    border-top: 1px dotted var(--primary-blue);
+    padding-top: 8px;
+}
+
+.name {
+    color: var(--primary-blue);
+    font-size: 1.2rem !important;
+    font-weight: bold;
+    margin: 0;
+}
+
+.role {
+    color: var(--text-gray);
+    font-size: 0.85rem !important;
+    margin: 0;
+    text-align: right;
+    /* Aligns role to the right of the name */
+}
+
+/* Responsive adjustment for tablets/phones */
+@media (max-width: 768px) {
+    .team-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .team-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Custom styling for the Bio Popup */
+
+/* Target the dialog container */
+.modal-dialog.modal-xl {
+    max-width: 95%;
+    /* Use percentage of screen width (e.g., 95% or 1500px) */
+    width: 1500px;
+    /* Desired fixed width */
+    margin: 30px auto;
+    /* Centers it and gives top/bottom breathing room */
+}
+
+/* Target the actual white box (content) */
+.modal-content {
+    min-height: 80vh;
+    /* Makes the modal cover 80% of the screen height */
+    display: flex;
+    flex-direction: column;
+}
+
+/* Ensure the row inside the modal fills the height */
+.modal-body,
+.modal-body .row {
+    height: 100%;
+    min-height: 85vh;
+}
+
+/* Close button styling to match the screenshot icon */
+.close-bio {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    background: #f0f8ff;
+    border: 1px solid #0076a8;
+    color: #0076a8;
+    border-radius: 50%;
+    width: 35px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    z-index: 10;
+    cursor: pointer;
+    outline: none;
+}
+
+.bio-content p {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: #333;
+    text-decoration: underline;
+    /* Matches the underline style in your screenshot */
+    text-underline-offset: 5px;
+    text-decoration-color: #dee2e6;
+    margin-bottom: 1.5rem;
+}
+
+/* Ensure the modal content is flush */
+.modal-content {
+    border-radius: 0;
+    overflow: hidden;
+}
+
+/* Position the button container */
+.close-bio-wrapper {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    padding: 0;
+    z-index: 1051;
+    /* Higher than modal content */
+    cursor: pointer;
+    outline: none !important;
+}
+
+/* The circular blue button with glow */
+.glow-circle {
+    width: 35px;
+    height: 35px;
+    border: 2px solid #0076a8;
+    /* Your primary blue */
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #0076a8;
+    background-color: #fff;
+    transition: all 0.3s ease;
+    /* This creates the initial soft glow */
+    box-shadow: 0 0 8px rgba(0, 118, 168, 0.3);
+}
+
+.glow-circle span {
+    font-size: 22px;
+    line-height: 1;
+    font-weight: bold;
+    margin-top: -2px;
+    /* Visual centering */
+}
+
+/* The Glow Effect on Hover */
+.close-bio-wrapper:hover .glow-circle {
+    background-color: #0076a8;
+    color: #fff;
+    box-shadow: 0 0 15px rgba(0, 118, 168, 0.8);
+    /* Intensified glow */
+    transform: scale(1.1);
+    /* Slight pop effect */
 }
