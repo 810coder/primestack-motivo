@@ -241,7 +241,7 @@
 }
 
 /* =========================
-   TOGGLE BUTTONS
+    TOGGLE BUTTONS
    ========================= */
 .toggle {
     display: flex;
@@ -272,7 +272,7 @@
 }
 
 /* =========================
-   GRID VIEW
+    GRID VIEW
    ========================= */
 .grid-view {
     display: none;
@@ -298,7 +298,7 @@
 }
 
 /* =========================
-   INFO BOX STYLES
+    INFO BOX STYLES
    ========================= */
 .project-card .info-box {
     background: #157a8a;
@@ -340,7 +340,7 @@
 }
 
 /* =========================
-   LIST VIEW & TABLE
+    LIST VIEW & TABLE
    ========================= */
 .list-view {
     display: none;
@@ -350,9 +350,19 @@
     display: block !important;
 }
 
+/* SMART WRAPPER: Only scrolls if table exceeds screen width */
+.project-list-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
 table {
     width: 100%;
     border-collapse: collapse;
+    /* Allows table to shrink, but sets a floor at 380px 
+       so it won't crush text on S8 */
+    min-width: 380px;
 }
 
 thead th {
@@ -390,6 +400,7 @@ tbody td:first-child {
     color: var(--primary);
     font-weight: 600;
     font-size: 16px;
+    /* Restored: Allows shrinking on XR, but prevents messy line breaks */
     white-space: nowrap;
 }
 
@@ -408,7 +419,7 @@ tbody td:first-child {
 }
 
 /* =========================
-   MOBILE VERSION (< 768px)
+    MOBILE VERSION (< 768px)
    ========================= */
 @media (max-width: 767px) {
     thead th {
@@ -419,6 +430,7 @@ tbody td:first-child {
         padding: 20px 10px;
     }
 
+    /* Keep your original percentage widths for XR compatibility */
     tbody td:first-child {
         width: 45%;
         padding-left: 10px;
@@ -436,7 +448,9 @@ tbody td:first-child {
 
     .project-name {
         font-size: 14px;
-        white-space: normal;
+        /* Changed to nowrap: This forces the scroll on S8 
+           instead of squishing the text into a vertical mess */
+        white-space: nowrap;
         line-height: 1.2;
     }
 
@@ -459,7 +473,7 @@ tbody td:first-child {
 }
 
 /* =========================
-   DESKTOP TABLE ALIGNMENT
+    DESKTOP TABLE ALIGNMENT
    ========================= */
 @media (min-width: 992px) {
 
@@ -479,7 +493,6 @@ tbody td:first-child {
         transition: opacity 0.3s ease-in-out 0.2s;
     }
 }
-
 
 /* =========================
    CUSTOM SLIDER LOGIC
