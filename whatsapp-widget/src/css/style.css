@@ -494,6 +494,34 @@ tbody td:first-child {
     }
 }
 
+/* ==========================================
+    CUSTOM HORIZONTAL SCROLLBAR STYLING
+   ========================================== */
+
+.project-list-wrapper::-webkit-scrollbar {
+    height: 8px;
+}
+
+.project-list-wrapper::-webkit-scrollbar-track {
+    background: var(--border);
+    border-radius: 10px;
+}
+
+.project-list-wrapper::-webkit-scrollbar-thumb {
+    background: var(--primary);
+    border-radius: 10px;
+    border: 2px solid var(--border);
+}
+
+.project-list-wrapper::-webkit-scrollbar-thumb:hover {
+    background: #1a81a1;
+}
+
+.project-list-wrapper {
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary) var(--border);
+}
+
 /* =========================
    CUSTOM SLIDER LOGIC
    ========================= */
