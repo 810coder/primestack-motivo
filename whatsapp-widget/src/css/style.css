@@ -642,14 +642,14 @@ tbody td:first-child {
 
 .name {
     color: var(--primary-blue);
-    font-size: 1.2rem !important;
+    font-size: 2rem !important;
     font-weight: bold;
     margin: 0;
 }
 
 .role {
     color: var(--text-gray);
-    font-size: 0.85rem !important;
+    font-size: 1.2rem !important;
     margin: 0;
     text-align: right;
     /* Aligns role to the right of the name */
