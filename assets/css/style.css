@@ -3342,11 +3342,15 @@ footer li a {
 
   .title h3.h3-title {
     top: 50%;
-    font-size: 35px;
+    font-size: 24px;
     width: 100%;
     line-height: 44px;
     left: 50%;
     transform: translate(-50%, -50%);
+  }
+
+  .about-wel {
+    font-size: 24px;
   }
 
   h2.h2-title {
