@@ -35,7 +35,7 @@
   };
   carousel();
 
-  // 3. Add 'active' class to menu & update BOTH "You Are Here" labels
+  // 3. Add 'active' class to menu & update "You Are Here" text
   var setActiveMenuLink = function () {
     var path = window.location.pathname;
     var currentPage = path.split('/').pop();
@@ -45,7 +45,7 @@
       currentPage = 'index.html';
     }
 
-    // Highlight the Nav Link in your menu
+    // Highlight the Nav Link
     $('#primary-menu a').each(function () {
       var href = $(this).attr('href');
       if (href === currentPage) {
@@ -53,17 +53,33 @@
       }
     });
 
-    // Create the Page Title text (e.g., about-us.html -> ABOUT US)
+    // Update "You Are Here" Label
+    var setActiveMenuLink = function () {
+    var path = window.location.pathname;
+    var currentPage = path.split('/').pop();
+
+    if (currentPage === '' || currentPage === '/') {
+      currentPage = 'index.html';
+    }
+
+    // Highlight Nav Link
+    $('#primary-menu a').each(function () {
+      var href = $(this).attr('href');
+      if (href === currentPage) {
+        $(this).addClass('active');
+      }
+    });
+
+    // Update BOTH "You Are Here" labels
     var pageTitle = currentPage.replace('.html', '').replace(/-/g, ' ');
     if (pageTitle.toLowerCase() === 'index' || pageTitle === '') {
       pageTitle = 'Home';
     }
-
-    // Update the standard 100% bar AND the new 20% hanging tag
+    
+    // Update the standard bar AND the new hanging tag
     $('#current-page-label').text(pageTitle);
     $('#current-page-label-tag').text(pageTitle);
   };
-  setActiveMenuLink();
 
   // 4. Count Up Animation
   var countUp = function () {
