@@ -981,6 +981,10 @@ textarea {
     width: 500px;
     height: auto;
   }
+
+  .unique-slide-btn.unique-contact-btn {
+    display: inline-block;
+  }
 }
 
 /* Small screens (large phones, tablets portrait) */
@@ -1970,9 +1974,7 @@ h2.h2-title {
     justify-items: start !important;
   }
 
-  /* .unique-slide-btn.unique-contact-btn {
-    display: block;
-  } */
+
 
   .contact-item {
     display: block;
