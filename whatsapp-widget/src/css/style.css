@@ -6,8 +6,8 @@
 #whatsapp-widget {
     font-family: "Ubuntu";
     position: fixed;
-    bottom: 90px;
-    right: 30px;
+    bottom: 20px;
+    right: 20px;
     z-index: 999;
     transition: 0.5s;
 }
