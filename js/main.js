@@ -1,7 +1,7 @@
 (function ($) {
   'use strict';
 
-  // 1. Set full height
+  // Set full height on elements with .js-fullheight
   var fullHeight = function () {
     $('.js-fullheight').css('height', $(window).height());
     $(window).resize(function () {
@@ -10,7 +10,7 @@
   };
   fullHeight();
 
-  // 2. Owl Carousel Setup
+  // Owl Carousel Setup
   var carousel = function () {
     $('.home-slider').owlCarousel({
       loop: true,
@@ -35,61 +35,47 @@
   };
   carousel();
 
-  // 3. Add 'active' class to menu & update "You Are Here" text
+  (function updateLabelFromFilename() {
+    // 1. Get the last part of the URL path (e.g., "about-us.html")
+    const path = window.location.pathname;
+    const filename = path.split('/').pop();
+
+    // 2. Remove the .html extension and replace dashes/underscores with spaces
+    let cleanName = filename.replace(/\.html$/i, '').replace(/[-_]/g, ' ');
+
+    // 3. Fallback to 'HOME' if the filename is empty (like on the root domain)
+    if (cleanName === '' || cleanName === 'index') {
+      cleanName = 'HOME';
+    }
+
+    // 4. Update the element
+    const labelElement = document.getElementById('current-page-label-tag');
+    if (labelElement) {
+      labelElement.textContent = cleanName.toUpperCase();
+    }
+  })();
+
+  // Add 'active' class to the current menu item
   var setActiveMenuLink = function () {
-    var path = window.location.pathname;
-    var currentPage = path.split('/').pop();
-
-    // Default to 'index.html' if path is empty
-    if (currentPage === '' || currentPage === '/') {
-      currentPage = 'index.html';
-    }
-
-    // Highlight the Nav Link
+    var currentPage = window.location.pathname.split('/').pop();
     $('#primary-menu a').each(function () {
       var href = $(this).attr('href');
-      if (href === currentPage) {
+      if (href === currentPage || href === '') {
         $(this).addClass('active');
       }
     });
-
-    // Update "You Are Here" Label
-    var setActiveMenuLink = function () {
-    var path = window.location.pathname;
-    var currentPage = path.split('/').pop();
-
-    if (currentPage === '' || currentPage === '/') {
-      currentPage = 'index.html';
-    }
-
-    // Highlight Nav Link
-    $('#primary-menu a').each(function () {
-      var href = $(this).attr('href');
-      if (href === currentPage) {
-        $(this).addClass('active');
-      }
-    });
-
-    // Update BOTH "You Are Here" labels
-    var pageTitle = currentPage.replace('.html', '').replace(/-/g, ' ');
-    if (pageTitle.toLowerCase() === 'index' || pageTitle === '') {
-      pageTitle = 'Home';
-    }
-    
-    // Update the standard bar AND the new hanging tag
-    $('#current-page-label').text(pageTitle);
-    $('#current-page-label-tag').text(pageTitle);
   };
+  setActiveMenuLink();
 
-  // 4. Count Up Animation
+  // Count Up Animation (for all .countup elements)
   var countUp = function () {
     var counters = document.querySelectorAll('.countup');
     if (!counters.length) return;
 
     counters.forEach(function (counter) {
-      var target = parseInt(counter.getAttribute('data-target')) || 0;
+      var target = parseInt(counter.getAttribute('data-target')) || 0; // final number
       var start = 0;
-      var duration = 2000;
+      var duration = 2000; // total animation time in ms
       var started = false;
 
       var animate = function () {
@@ -113,27 +99,9 @@
           }
         });
       });
+
       observer.observe(counter);
     });
   };
   countUp();
-
-  // --- MODAL VIDEO LOGIC FOR BOOTSTRAP 4 ---
-  $(document).ready(function () {
-    var $videoModal = $('#videoModal');
-    var modalVideo = document.getElementById('serviceVideo');
-
-    $videoModal.on('shown.bs.modal', function () {
-      if (modalVideo) {
-        modalVideo.play();
-      }
-    });
-
-    $videoModal.on('hidden.bs.modal', function () {
-      if (modalVideo) {
-        modalVideo.pause();
-        modalVideo.currentTime = 0;
-      }
-    });
-  });
 })(jQuery);
