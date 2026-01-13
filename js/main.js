@@ -1,87 +1,123 @@
 (function ($) {
-    "use strict";
+  'use strict';
 
-    // Set full height on elements with .js-fullheight
-    var fullHeight = function () {
-        $(".js-fullheight").css("height", $(window).height());
-        $(window).resize(function () {
-            $(".js-fullheight").css("height", $(window).height());
+  // 1. Set full height
+  var fullHeight = function () {
+    $('.js-fullheight').css('height', $(window).height());
+    $(window).resize(function () {
+      $('.js-fullheight').css('height', $(window).height());
+    });
+  };
+  fullHeight();
+
+  // 2. Owl Carousel Setup
+  var carousel = function () {
+    $('.home-slider').owlCarousel({
+      loop: true,
+      autoplay: true,
+      margin: 0,
+      animateOut: 'fadeOut',
+      animateIn: 'fadeIn',
+      nav: true,
+      dots: true,
+      autoplayHoverPause: false,
+      items: 1,
+      navText: [
+        "<span class='ion-ios-arrow-back'></span>",
+        "<span class='ion-ios-arrow-forward'></span>",
+      ],
+      responsive: {
+        0: { items: 1 },
+        600: { items: 1 },
+        1000: { items: 1 },
+      },
+    });
+  };
+  carousel();
+
+  // 3. Add 'active' class to menu & update BOTH "You Are Here" labels
+  var setActiveMenuLink = function () {
+    var path = window.location.pathname;
+    var currentPage = path.split('/').pop();
+
+    // Default to 'index.html' if path is empty
+    if (currentPage === '' || currentPage === '/') {
+      currentPage = 'index.html';
+    }
+
+    // Highlight the Nav Link in your menu
+    $('#primary-menu a').each(function () {
+      var href = $(this).attr('href');
+      if (href === currentPage) {
+        $(this).addClass('active');
+      }
+    });
+
+    // Create the Page Title text (e.g., about-us.html -> ABOUT US)
+    var pageTitle = currentPage.replace('.html', '').replace(/-/g, ' ');
+    if (pageTitle.toLowerCase() === 'index' || pageTitle === '') {
+      pageTitle = 'Home';
+    }
+
+    // Update the standard 100% bar AND the new 20% hanging tag
+    $('#current-page-label').text(pageTitle);
+    $('#current-page-label-tag').text(pageTitle);
+  };
+  setActiveMenuLink();
+
+  // 4. Count Up Animation
+  var countUp = function () {
+    var counters = document.querySelectorAll('.countup');
+    if (!counters.length) return;
+
+    counters.forEach(function (counter) {
+      var target = parseInt(counter.getAttribute('data-target')) || 0;
+      var start = 0;
+      var duration = 2000;
+      var started = false;
+
+      var animate = function () {
+        var current = start;
+        var stepTime = duration / (target - start);
+        var timer = setInterval(function () {
+          counter.textContent = current;
+          if (current === target) {
+            clearInterval(timer);
+          } else {
+            current++;
+          }
+        }, stepTime);
+      };
+
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting && !started) {
+            started = true;
+            animate();
+          }
         });
-    };
-    fullHeight();
+      });
+      observer.observe(counter);
+    });
+  };
+  countUp();
 
-    // Owl Carousel Setup
-    var carousel = function () {
-        $(".home-slider").owlCarousel({
-            loop: true,
-            autoplay: true,
-            margin: 0,
-            animateOut: "fadeOut",
-            animateIn: "fadeIn",
-            nav: true,
-            dots: true,
-            autoplayHoverPause: false,
-            items: 1,
-            navText: [
-                "<span class='ion-ios-arrow-back'></span>",
-                "<span class='ion-ios-arrow-forward'></span>",
-            ],
-            responsive: {
-                0: { items: 1 },
-                600: { items: 1 },
-                1000: { items: 1 },
-            },
-        });
-    };
-    carousel();
+  // --- MODAL VIDEO LOGIC FOR BOOTSTRAP 4 ---
+  $(document).ready(function () {
+    var $videoModal = $('#videoModal');
+    var modalVideo = document.getElementById('serviceVideo');
 
-    // Add 'active' class to the current menu item
-    var setActiveMenuLink = function () {
-        var currentPage = window.location.pathname.split("/").pop();
-        $("#primary-menu a").each(function () {
-            var href = $(this).attr("href");
-            if (href === currentPage || href === "") {
-                $(this).addClass("active");
-            }
-        });
-    };
-    setActiveMenuLink();
+    $videoModal.on('shown.bs.modal', function () {
+      if (modalVideo) {
+        modalVideo.play();
+      }
+    });
 
-    // Count Up Animation (for all .countup elements)
-    var countUp = function () {
-        var counters = document.querySelectorAll(".countup");
-        if (!counters.length) return;
-
-        counters.forEach(function (counter) {
-            var target = parseInt(counter.getAttribute("data-target")) || 0; // final number
-            var start = 0;
-            var duration = 2000; // total animation time in ms
-            var started = false;
-
-            var animate = function () {
-                var current = start;
-                var stepTime = duration / (target - start);
-                var timer = setInterval(function () {
-                    counter.textContent = current;
-                    if (current === target) {
-                        clearInterval(timer);
-                    } else {
-                        current++;
-                    }
-                }, stepTime);
-            };
-
-            var observer = new IntersectionObserver(function (entries) {
-                entries.forEach(function (entry) {
-                    if (entry.isIntersecting && !started) {
-                        started = true;
-                        animate();
-                    }
-                });
-            });
-
-            observer.observe(counter);
-        });
-    };
-    countUp();
+    $videoModal.on('hidden.bs.modal', function () {
+      if (modalVideo) {
+        modalVideo.pause();
+        modalVideo.currentTime = 0;
+      }
+    });
+  });
 })(jQuery);
