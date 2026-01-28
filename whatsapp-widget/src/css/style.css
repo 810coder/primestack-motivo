@@ -653,6 +653,7 @@ tbody td:first-child {
     padding: 20px;
     font-family: sans-serif;
     background-color: #fff;
+    overflow-x: auto;
 }
 
 .team-card {
