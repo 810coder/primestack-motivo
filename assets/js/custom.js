@@ -24,24 +24,6 @@ jQuery(document).ready(function ($) {
   new WOW().init();
   // WOW Js End
 
-  // SscrollToTop Start
-  const backToTop = document.getElementById('backToTop');
-
-  window.addEventListener('scroll', () => {
-    if (window.pageYOffset > 300) {
-      backToTop.classList.add('visible');
-    } else {
-      backToTop.classList.remove('visible');
-    }
-  });
-
-  backToTop.addEventListener('click', () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth',
-    });
-  });
-
   let lastScrollY = 0;
   let ticking = false;
 
